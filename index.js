@@ -32,21 +32,43 @@ app.post('/', (req, res) => {
 function handleQueries(q, res){
 	let text = q.text;
 	
-	if( text == "toto"){
-		res.send("tu as dis toto");
+	if( text == "test"){
+		res.send("tu as dis test");
 		return;
 	}
-	if( text == "launch docker"){
-		exec("sh scripts/launcher.sh");
+	if( text == "launch")
+	{
+		exec("sh scripts/launcher.sh", puts);
 		res.send("Launch on <http://localhost:8080>");
+		return;
 	}
+	if( text == "stop")
+	{
+		exec("sh scripts/stop.sh", puts);
+		res.send("Stop docker");
+		return;
+	}
+	if( text == "status")
+	{
+		exec("sh scripts/bob_healthCheck.sh", puts);
+		res.send("none");
+		return;
+	}
+	if( text == "update"){
+		exec("sh scripts/update.sh", puts);
+		res.send("update and relaunch");
+		return;
+	}
+
+
+
 	else{
 		let data = {
 			response_type: 'ephemeral', // private message
-			text: 'How to use /httpstatus command:',
+			text: 'How to use /bob command:',
 			attachments:[
 			{
-				text: 'Type a status code after the command, e.g. `/httpstatus 404`',
+				text: 'mauvaise commande [launch, stop, status, update]',
 			}
 			]
 		};
