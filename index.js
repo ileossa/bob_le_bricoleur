@@ -59,9 +59,6 @@ function handleQueries(q, res){
 		res.send("update and relaunch");
 		return;
 	}
-
-
-
 	else{
 		let data = {
 			response_type: 'ephemeral', // private message
