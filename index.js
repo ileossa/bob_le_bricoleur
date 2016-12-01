@@ -32,14 +32,31 @@ app.post('/', (req, res) => {
 function handleQueries(q, res){
 	let text = q.text;
 	
-	if( text == "toto"){
+	if( text == "test"){
 		res.send("tu as dis toto");
 		return;
 	}
-	if( text == "launch docker"){
-		exec("sh scripts/launcher.sh");
+	if( text == "launch")
+	{
+		exec("sh scripts/launcher.sh", puts);
 		res.send("Launch on <http://localhost:8080>");
+		return;
 	}
+	if( text == "stop")
+	{
+		exec("sh scripts/stop.sh", puts);
+		res.send("Stop docker");
+		return;
+	}
+	if( text == "healthcheck")
+	{
+		exec("sh scripts/bob_healthCheck.sh", puts);
+		res.send(puts);
+		return;
+	}
+
+
+
 	else{
 		let data = {
 			response_type: 'ephemeral', // private message
